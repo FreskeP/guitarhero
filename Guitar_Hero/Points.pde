@@ -1,6 +1,20 @@
-class Points {
+
+class Points extends Guitar_Hero{
   
-  //for(int i=0; i<
+ Points() {
+ }
+  
+  void pointSystem() {
+    
+ 
+ }
+    
+    
+  }
+  //void incrementPoint() {
+  // if (keyPressed()
+    
+  //}
   
   
-}
+//}

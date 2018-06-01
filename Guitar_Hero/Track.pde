@@ -1,9 +1,9 @@
-class Track {
+public class Track {
 
-  public Track() {
+   public Track() {
+    
   }
-
-  void drawTrack() {
+   void drawTrack() {
     fill(50);
     rect(210, 0, 400, 900);
 
@@ -21,5 +21,7 @@ class Track {
 
     fill(255, 99, 71);
     ellipse(545, 850, 60, 60);
+    
+    text("Points:", 0, 20);
   }
 }
