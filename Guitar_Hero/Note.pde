@@ -1,22 +1,32 @@
 class Note {
-  private int x;
-  private int y;
+  private int xLoc;
+  private int yLoc;
 
   Note( int x, int y) {
-    this.x=x;
-    this.y=y;
+    xLoc=x;
+    yLoc=y;
   }
   public int getY() {
-    return y;
+    return yLoc;
+  }
+
+  public void setY(int y) {
+    yLoc=y;
   }
   public int getX() {
-    return x;
+    return xLoc;
   }
 
   void display() {
 
     fill(255, 0, 0);
-    ellipse(x, y, 50, 50);
-    y++;
+    ellipse(xLoc, yLoc, 50, 50);
+    yLoc++;
+    if (yLoc==1200) {
+      yLoc--;
+    }
+    if (yLoc==1000) {
+      yLoc++;
+    }
   }
 }

@@ -23,5 +23,7 @@ public class Track {
     ellipse(545, 850, 60, 60);
     
     text("Points:", 0, 20);
+     
+    //text("Click Enter to Play", 350, 450);
   }
 }
