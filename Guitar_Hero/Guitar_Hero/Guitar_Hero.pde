@@ -1,8 +1,8 @@
 
 ArrayList<Note>myNotes=new ArrayList<Note>();
-int count;
+int count=0;
 int points=0;
-boolean start;
+boolean start=true;
 Track t= new Track();
 int savedTime;
 int totalTime = 1000;
@@ -17,43 +17,55 @@ void setup() {
 
 
 void draw() {
-  background(0);
-  text("Click Control to Play", 350, 450);
-  beginGame();
-  int passedTime = millis() - savedTime;
-  if (passedTime > totalTime) {
-    randomizedFalling();
-    savedTime = millis();
-  }
-}
-
-
-void beginGame() {
-  if (key==CODED) {
-    if (keyCode == CONTROL) {
+  if (start==true) {
+    background(0);
+    text("Click Control to Play", 350, 450);
+    //beginGame();
+    t.drawTrack();  
+    displayNotes();
+    theScore();
+    int passedTime = millis() - savedTime;
+    if (passedTime > totalTime) {
+      randomizedFalling();
+      savedTime = millis();
+    }
+    gameOver();
+    if (count==1) {
+      start=false;
+    }
+  } else {
+    background(255);
+    text("ur garbage boi, click control to suck again", 350, 450);
+    if (keyCode==' ') {
       start=true;
     }
-    if (start==true) {
-      t.drawTrack();  
-      displayNotes();
-      theScore();
-
-      //gameOver();
-    }
   }
 }
+
+
+//void beginGame() {
+//  if (key==CODED) {
+//    if (keyCode == CONTROL) {
+//      start=true;
+//    }
+//    if (start==true) {
+//      t.drawTrack();  
+//      displayNotes();
+//      theScore();
+//      gameOver();
+//    }
+//  }
+//}
 
 void keyPressed() {
   if (key==CODED) {
+
+
     if (keyCode == UP) {
       for (int i=0; i<myNotes.size(); i++) {
-        if (myNotes.get(i).getY()>820 && myNotes.get(i).getY()<890 && myNotes.get(i).getX()==245) {
+        if (myNotes.get(i).getY()>815 && myNotes.get(i).getY()<870 && myNotes.get(i).getX()==245) {
           myNotes.get(i).setY(1500);
           points+=1;
-        }
-        else if (myNotes.get(i).getY()<820 || myNotes.get(i).getY()>890 && myNotes.get(i).getX()!=245) {
-          myNotes.get(i).setY(1500);
-        
         }
       }
     }
@@ -62,57 +74,42 @@ void keyPressed() {
     if (keyCode == DOWN) { 
 
       for (int i=0; i<myNotes.size(); i++) {
-        if (myNotes.get(i).getY()>820 && myNotes.get(i).getY()<890 && myNotes.get(i).getX()==320) {
+        if (myNotes.get(i).getY()>815 && myNotes.get(i).getY()<870 && myNotes.get(i).getX()==320) {
           myNotes.get(i).setY(1500);
           points+=1;
         }
-        else if (myNotes.get(i).getY()<820 || myNotes.get(i).getY()>890 && myNotes.get(i).getX()!=320) {
+      }
+    }
+    if (keyCode == LEFT) { 
+
+      for (int i=0; i<myNotes.size(); i++) {
+        if (myNotes.get(i).getY()>815 && myNotes.get(i).getY()<870 && myNotes.get(i).getX()==395) {
           myNotes.get(i).setY(1500);
-         
+          points+=1;
         }
       }
-      if (keyCode == LEFT) { 
+    }
+    if (keyCode == RIGHT) { 
 
-        for (int i=0; i<myNotes.size(); i++) {
-          if (myNotes.get(i).getY()>820 && myNotes.get(i).getY()<890 && myNotes.get(i).getX()==395) {
-            myNotes.get(i).setY(1500);
-            points+=1;
-          }
-          else if (myNotes.get(i).getY()<820 || myNotes.get(i).getY()>890 && myNotes.get(i).getX()!=395) {
-            myNotes.get(i).setY(1500);
-           
-          }
+      for (int i=0; i<myNotes.size(); i++) {
+        if (myNotes.get(i).getY()>815 && myNotes.get(i).getY()<870 && myNotes.get(i).getX()==470) {
+          myNotes.get(i).setY(1500);
+          points+=1;
         }
       }
-      if (keyCode == RIGHT) { 
+    }
+    if (keyCode==SHIFT) { 
 
-        for (int i=0; i<myNotes.size(); i++) {
-          if (myNotes.get(i).getY()>820 && myNotes.get(i).getY()<890 && myNotes.get(i).getX()==470) {
-            myNotes.get(i).setY(1500);
-            points+=1;
-          }
-          else if (myNotes.get(i).getY()<820 || myNotes.get(i).getY()>890 && myNotes.get(i).getX()!=470) {
-            myNotes.get(i).setY(1500);
-            
-          }
-        }
-      }
-      if (keyCode==SHIFT) { 
-
-        for (int i=0; i<myNotes.size(); i++) {
-          if (myNotes.get(i).getY()>820 && myNotes.get(i).getY()<890 && myNotes.get(i).getX()==545) {
-            myNotes.get(i).setY(1500);
-            points+=1;
-          }
-          else if (myNotes.get(i).getY()<820 || myNotes.get(i).getY()>890 && myNotes.get(i).getX()!=545) {
-            myNotes.get(i).setY(1500);
-            
-          }
+      for (int i=0; i<myNotes.size(); i++) {
+        if (myNotes.get(i).getY()>815 && myNotes.get(i).getY()<870 && myNotes.get(i).getX()==545) {
+          myNotes.get(i).setY(1500);
+          points+=1;
         }
       }
     }
   }
 }
+
 
 
 void randomizedFalling() {
@@ -137,28 +134,35 @@ void randomizedFalling() {
 
 
 void displayNotes() {
+  
   for (int i=0; i<myNotes.size(); i++) {
     myNotes.get(i).display();
+    
   }
+  
 }
 public void theScore() {
   text(points, 50, 20);
 }
 public void gameOver() {
   int count=0;
-  for(int i=0; i<myNotes.size(); i++) {
-    if(myNotes.get(i).getY()==900) {
+  for (int i=0; i<myNotes.size(); i++) {
+    if (myNotes.get(i).getY()==875) {
       count++;
-    if(count==1) {
-      restart();
-    }
-  }
-  }
-}
-public void restart() {
-  
-  for(int i=0; i<myNotes.size(); i++) {
-    myNotes.remove(i);
+      System.out.println(count);
+      if (count==2) {
+        start=false;
+        text("ur garbage boi, click control to suck again", 350, 450);
+        //for(Note n: myNotes) {
+        // delay(1000000000);
+        if (key==CODED) {
+          if (keyCode == CONTROL) {
 
+            //beginGame();
+            //}
+          }
+        }
+      }
+    }
   }
 }
